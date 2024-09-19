@@ -1,13 +1,19 @@
 "use client"
 import React, { useState } from 'react';
-import { ArrowLeft, Check, X } from 'lucide-react';
+import { Check, X } from 'lucide-react';
+import Image from 'next/image';
+import profile from './assets/images/icons/avater.svg'
+import govCopy from './assets/images/icons/governance_copy.svg'
+import avatarInfo from './assets/images/icons/governance_avater.svg'
+import steps from './assets/images/icons/steps.png'
+import Footer from './components/Footer'
 
 const GamFiVotingPage = () => {
   const [selectedVote, setSelectedVote] = useState('yes');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const VoteCircle = ({ isSelected }) => (
-    <div className={`w-5 h-5 rounded-full border ${isSelected ? 'bg-green-500 border-green-500' : 'border-gray-400'} flex items-center justify-center mr-3`}>
+    <div className={`w-5 h-5 rounded-full border ${isSelected ? 'bg-green-400 border-green-400' : 'border-gray-400'} flex items-center justify-center mr-3`}>
       {isSelected && <Check className="w-3 h-3 text-white" />}
     </div>
   );
@@ -32,9 +38,15 @@ const GamFiVotingPage = () => {
     if (!isOpen) return null;
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={onClose}>
+      <div 
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 transition-all duration-300 ease-in-out"
+        onClick={onClose}
+        style={{
+          backdropFilter: 'blur(5px)',
+        }}
+      >
         <div 
-          className="bg-[#1c1830] p-12 w-full max-w-md transform transition-all duration-300 ease-in-out"
+          className="bg-[#1c1830] p-12 w-full max-w-md transform transition-all duration-300 ease-in-out mt-20"
           style={{
             opacity: isOpen ? 1 : 0,
             transform: isOpen ? 'translateY(0)' : 'translateY(-20px)',
@@ -74,21 +86,21 @@ const GamFiVotingPage = () => {
   };
   
   return (
-    <div className="bg-[#0e0b1f] text-white min-h-screen font-sans">
+    <div className='bg-[#0e0b1f] overflow-hidden'>
+    <div className=" max-w-7xl mx-auto text-white min-h-screen font-sans">
       {/* Main Content */}
-      <main className="p-4 sm:p-8">
-        <div className="flex items-center mb-6">
-          <ArrowLeft className="mr-2" />
-          <span>BACK</span>
-        </div>
+      <main className={`p-4 sm:p-8 ${isModalOpen ? 'filter blur-sm' : ''}`}>
+        <a href={'governance'} className="flex items-center gap-2 mb-6">
+          <span className='text-3xl text-gray-400'>←</span> <span>BACK</span>
+        </a>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-12">
           {/* Left Column */}
           <div className="md:col-span-2">
             <h1 className="text-2xl sm:text-3xl font-bold my-6 sm:my-10">#7 INCLUDE METAVERSE IN GAMFI</h1>
-            <p className="mb-4 sm:mb-8 font-semibold text-base sm:text-lg">BY: ADAM SMITH <span className='text-green-600'> <span>•</span> Executed,</span> on April 23rd, 2022</p>
+            <p className="mb-4 sm:mb-8 font-semibold text-base sm:text-lg">BY: ADAM SMITH <span className='text-green-400'> <span>•</span> Executed,</span> on April 23rd, 2022</p>
             <p className="text-sm sm:text-base lg:w-5/6">It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College</p>
-            <p className='mb-6 sm:mb-8 mt-2 text-green-600 text-base sm:text-lg font-semibold break-words'>58cvv63BAe2Fc44dA742Df13CD3ee94b6bB868ea4xd</p>
+            <p className='mb-6 sm:mb-8 mt-2 text-green-700 text-base sm:text-lg font-semibold break-words hover:text-green-400 transition-all cursor-pointer'>58cvv63BAe2Fc44dA742Df13CD3ee94b6bB868ea4xd</p>
             
             {/* Full-Width Voting Section */}
             <div className="bg-[#1c1830] p-4 sm:p-6 mb-6 sm:mb-8">
@@ -143,8 +155,9 @@ const GamFiVotingPage = () => {
                 {voteData.map((vote, index) => (
                   <div key={index} className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-3 sm:py-4 border-b border-gray-700">
                     <div className="flex items-center w-full sm:w-1/3 mb-2 sm:mb-0">
-                      <img src={`/api/placeholder/32/32`} alt="Profile" className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-2 sm:mr-3" />
+                      <Image src={profile} alt="Profile" className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-2 sm:mr-3"  />
                       <span className="font-semibold text-sm sm:text-base break-all">{vote.address}</span>
+                      <Image src={govCopy} alt='copy' className='ml-2 mt-1 cursor-pointer'  />
                     </div>
                     <span className="text-white text-base sm:text-lg font-semibold w-full sm:w-1/3 text-left sm:text-center mb-2 sm:mb-0">{vote.vote}</span>
                     <span className="text-base sm:text-lg font-semibold w-full sm:w-1/3 text-left sm:text-right">{vote.amount}</span>
@@ -155,14 +168,12 @@ const GamFiVotingPage = () => {
           </div>
 
           {/* Right Column */}
-          <div>
+          <div className=''>
             <div className="bg-[#1c1830] mb-6 sm:mb-8 p-4 sm:p-6 font-semibold text-sm sm:text-base">
               <div className="flex items-center mb-4 sm:mb-6">
                 <h2 className="text-lg sm:text-xl font-bold mr-2">CURRENT RESULTS</h2>
-                <div className="w-16 sm:w-20 h-3 sm:h-4">
-                  <svg viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 8h80M10 0l10 8-10 8M30 0l10 8-10 8M50 0l10 8-10 8M70 0l10 8-10 8" stroke="currentColor" strokeWidth="2"/>
-                  </svg>
+                <div className="w-16  mt-2 sm:w-20 h-3 sm:h-4">
+                 <Image src={steps}  />
                 </div>
               </div>
               
@@ -185,31 +196,37 @@ const GamFiVotingPage = () => {
             <div className="bg-[#1c1830] p-4 sm:p-6 font-semibold text-base sm:text-lg">
               <div className="flex items-center mb-4 sm:mb-6">
                 <h2 className="text-lg sm:text-xl font-bold mr-2">INFORMATION</h2>
-                <div className="w-16 sm:w-20 h-3 sm:h-4">
-                  <svg viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 8h80M10 0l10 8-10 8M30 0l10 8-10 8M50 0l10 8-10 8M70 0l10 8-10 8" stroke="currentColor" strokeWidth="2"/>
-                  </svg>
+                <div className="w-16 sm:w-20 mt-2 h-3 sm:h-4">
+                 <Image src={steps}  />
                 </div>
               </div>
-              <div className="flex justify-between mb-3 sm:mb-6">
+              <div className="flex gap-1 wrap justify-between mb-3 sm:mb-6">
                 <span className="text-gray-400">Creator</span>
-                <span>@RvmZwx4s</span>
+                <div className='flex wrap gap-2 items-center'>
+                  <Image src={avatarInfo} alt='avatarInfo'  className="w-6 h-6 rounded-full"  />
+                  <span>@RvmZwx4s</span>
+                  <Image src={govCopy} alt='copy' className=' mt-1 cursor-pointer'  />
+                </div>
               </div>
-              <div className="flex justify-between mb-3 sm:mb-6">
+              <div className="flex gap-1 wrap justify-between mb-3 sm:mb-6">
                 <span className="text-gray-400">Address</span>
-                <span className="break-all text-right">56sxd6xy6...e84sd</span>
+                <span className="break-all text-right text-green-400">56sxd6xy6...e84sd</span>
               </div>
-              <div className="flex justify-between mb-3 sm:mb-6">
+              <div className="flex gap-1 wrap justify-between mb-3 sm:mb-6">
                 <span className="text-gray-400">Start Date</span>
                 <span className="text-right">Mar 15, 2022, 12:00 AM</span>
               </div>
-              <div className="flex justify-between mb-3 sm:mb-6">
+              <div className="flex gap-1 wrap justify-between mb-3 sm:mb-6">
                 <span className="text-gray-400">End Date</span>
                 <span className="text-right">Mar 18, 2022, 12:00 AM</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex gap-1 wrap justify-between">
                 <span className="text-gray-400">Snapshot</span>
-                <span>93,586,256</span>
+                <div className='flex items-center gap-2'>
+                  <span>93,586,256</span>
+                  <Image src={govCopy} alt='copy' className='cursor-pointer'  />
+                </div>
+
               </div>
               <button className="bg-[#251f3f] uppercase text-white w-full mt-6 sm:mt-10 mb-4 sm:mb-6 py-3 sm:py-5 px-4 sm:px-6 font-semibold hover:bg-[#3d2d6e]">
                   Discussion
@@ -222,6 +239,10 @@ const GamFiVotingPage = () => {
       {/* Modal Component */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
+
+    <Footer />
+  </div>
+
   );
 };
 
