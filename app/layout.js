@@ -13,7 +13,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Gamfi - Governance",
+  title: "Gamfi - Governance Details.",
   description: "Gamfi - Governance Product Details",
 };
 

@@ -198,9 +198,9 @@ const GamFiVotingPage = () => {
                   {voteData.map((vote, index) => (
                     <div
                       key={index}
-                      className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-3 sm:py-4 border-b border-gray-700"
+                      className="flex gap-12 justify-between items-center py-3 sm:py-4 border-b border-gray-700"
                     >
-                      <div className="flex items-center w-full sm:w-1/3 mb-2 sm:mb-0">
+                      <div className="flex items-center md:flex-wrap lg:flex-nowrap mb-2 sm:mb-0">
                         <Image
                           src={profile}
                           alt="Profile"
@@ -215,10 +215,10 @@ const GamFiVotingPage = () => {
                           className="ml-2 mt-1 cursor-pointer"
                         />
                       </div>
-                      <span className="text-white text-base sm:text-lg font-semibold w-full sm:w-1/3 text-left sm:text-center mb-2 sm:mb-0">
+                      <span className="text-white text-base sm:text-lg font-semibold text-left sm:text-center mb-2 sm:mb-0">
                         {vote.vote}
                       </span>
-                      <span className="text-base sm:text-lg font-semibold w-full sm:w-1/3 text-left sm:text-right">
+                      <span className="text-base sm:text-lg font-semibold  text-left sm:text-right">
                         {vote.amount}
                       </span>
                     </div>
