@@ -36,10 +36,10 @@ const Footer = () => {
       <div className="flex items-center justify-center py-16  bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="w-full max-w-2xl p-8 rounded-lg shadow-lg">
           <div className="text-center">
-            <h1 className="text-3xl lg:text-4xl leading-snug font-bold w-3/4 mx-auto text-white mb-8">
+            <h1 className="text-3xl lg:text-4xl lg:leading-snug font-bold w-3/4 mx-auto text-white mb-8">
               APPLY FOR PROJECT INCUBATION
             </h1>
-            <p className="text-gray-400 mb-8">
+            <p className="text-gray-400 font-semibold text-lg mb-8">
               If you want to launch an IGO/IDO, It will be your perfect choice
             </p>
             <button className="bg-lime-400 hover:bg-lime-500 text-gray-900 font-bold py-3 px-8 transition duration-300">
@@ -54,11 +54,11 @@ const Footer = () => {
           <div className="mb-12">
             <div className="flex items-center justify-center gap-4 mb-12">
                 <Image src={steps2} alt="step" />
-                <h2 className="font-semibold text-2xl relative z-10">
+                <h2 className="font-semibold text-2xl text-center relative z-10">
                     FIND US ON SOCIAL
                 </h2>
                 <Image src={steps1} alt="step"/>
-              <span className="absolute inset-x-0 top-1/2 h-px bg-gray-700 -z-1"></span>
+              {/* <span className="absolute inset-x-0 top-1/2 h-px bg-gray-700 -z-1"></span> */}
             </div>
             <div className="flex justify-center space-x-6">
               {[...Array(7)].map((_, index) => (
@@ -77,7 +77,7 @@ const Footer = () => {
           </div>
 
           <nav className="mb-8">
-            <ul className="flex flex-wrap justify-center space-x-6 text-base">
+            <ul className="flex flex-wrap gap-3 justify-center text-sm space-x-6 md:text-base">
               {[
                 "Features",
                 "How it works",
@@ -104,7 +104,7 @@ const Footer = () => {
           <div className="fixed left-1/2 bottom-3 transform -translate-x-1/2 z-50">
             <button
               onClick={scrollToTop}
-              className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-colors duration-300"
+              className="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-colors duration-300"
               aria-label="Scroll to top"
             >
               <svg
